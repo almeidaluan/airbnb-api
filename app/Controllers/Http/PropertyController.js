@@ -6,6 +6,7 @@ const Property = use('App/Models/Property')
 class PropertyController {
   /**
    * Show a list of all properties.
+   *
    * GET properties
    */
   async index ({ request }) {
