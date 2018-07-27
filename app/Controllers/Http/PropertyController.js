@@ -9,13 +9,13 @@ class PropertyController {
    * GET properties
    */
   async index ({ request }) {
-    
+     // return const properties = Properties.all()
     const { latitude, longitude } = request.all()
 
     const properties = Property.query()
     .nearBy(latitude,longitude,10)
     .fetch()
-    
+
     return properties
   }
 
@@ -24,7 +24,7 @@ class PropertyController {
    * POST properties
    */
   async store ({auth, request, response }) {
-    
+
     const { id } = auth.user
 
     const data = request.only([
@@ -45,13 +45,13 @@ class PropertyController {
    * GET properties/:id
    */
   async show ({ params }) {
-    
+
     const property = await Property.findOrFail(params.id)
-    
+
     await property.load('images')
 
     return property
-  
+
   }
 
   /**
@@ -59,7 +59,7 @@ class PropertyController {
    * PUT or PATCH properties/:id
    */
   async update ({ params, request, response }) {
-    
+
     const property = await Property.findOrFail(params.id)
 
     const data = request.only(
